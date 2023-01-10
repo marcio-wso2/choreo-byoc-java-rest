@@ -7,9 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
+
 @Repository
 public class ProductRepository {
     private List<Product> list = new ArrayList<Product>();
+
+    @PostConstruct
+    public void setup(){
+        this.createProducts();
+    }
 
     public void createProducts() {
         list = List.of(
@@ -20,7 +27,6 @@ public class ProductRepository {
     }
 
     public List<Product> getAllProducts() {
-        this.createProducts();
         return list;
     }
 
